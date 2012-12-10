@@ -4,8 +4,7 @@ import java.lang.annotation.*;
 
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD, ElementType.CONSTRUCTOR})
+@Target(ElementType.PARAMETER)
 public @interface TestFactory {
-    String parameter();
-    String factory();
+    String value();
 }
