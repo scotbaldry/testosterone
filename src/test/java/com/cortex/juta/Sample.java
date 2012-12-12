@@ -1,19 +1,14 @@
 package com.cortex.juta;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
-
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
-
 public class Sample {
     public Sample() {
     }
 
     @TestosteroneTest(id = 1234, description = "First Test")
     @ReturnInvariant(">0")
-    public int myMethod(@TestFactory("PositiveIntFactory") int x,
-                        @TestFactory("PositiveIntFactory") int y,
-                        @TestFactory("RandomStringFactory") String z) {
+    public int myMethod(@TestFactory("com.cortex.juta.PositiveIntegerFactory") int x,
+                        @TestFactory("com.cortex.juta.PositiveIntegerFactory") int y,
+                        @TestFactory("com.cortex.juta.RandomStringFactory") String z) {
         return 0;
     }
 
