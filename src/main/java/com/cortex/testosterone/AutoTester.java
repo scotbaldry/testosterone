@@ -1,4 +1,4 @@
-package com.cortex.juta;
+package com.cortex.testosterone;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
@@ -73,8 +73,8 @@ public class AutoTester {
                 Class parameterType = parameterTypes[i++];
 
                 for (Annotation annotation : annotations) {
-                    if (annotation instanceof TestFactory) {
-                        TestFactory myAnnotation = (TestFactory) annotation;
+                    if (annotation instanceof ValueFactory) {
+                        ValueFactory myAnnotation = (ValueFactory) annotation;
                         Factory factory = createFactory(myAnnotation.value());
                         f.addValueFactory(factory);
                     }

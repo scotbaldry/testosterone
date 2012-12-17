@@ -1,10 +1,10 @@
-package com.cortex.juta;
+package com.cortex.testosterone;
 
 import java.lang.annotation.*;
 
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.PARAMETER)
-public @interface TestFactory {
+@Target(ElementType.METHOD)
+public @interface ReturnInvariant {
     String value();
 }

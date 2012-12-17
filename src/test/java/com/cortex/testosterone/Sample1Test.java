@@ -1,12 +1,12 @@
-package com.cortex.juta;
+package com.cortex.testosterone;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class SampleTest {
+public class Sample1Test {
     public static void main(String args[]) {
-        Sample s = new Sample();
+        Sample1 s = new Sample1();
         Class types[] = {int.class, int.class, String.class};
 
         Method method = null;
@@ -23,8 +23,8 @@ public class SampleTest {
             Class parameterType = parameterTypes[i++];
 
             for(Annotation annotation : annotations){
-                if(annotation instanceof TestFactory){
-                    TestFactory myAnnotation = (TestFactory) annotation;
+                if(annotation instanceof ValueFactory){
+                    ValueFactory myAnnotation = (ValueFactory) annotation;
                     System.out.println("param: " + parameterType.getName());
                     System.out.println("value: " + myAnnotation.value());
                 }

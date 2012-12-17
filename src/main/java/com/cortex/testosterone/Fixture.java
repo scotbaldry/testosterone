@@ -1,4 +1,4 @@
-package com.cortex.juta;
+package com.cortex.testosterone;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -51,7 +51,7 @@ public class Fixture {
             int ptr = 0;
             for (Object o : args) {
                 sb.append(o.toString());
-                if (ptr < args.length) {
+                if (ptr < args.length - 1) {
                     sb.append(", ");
                 }
                 else {

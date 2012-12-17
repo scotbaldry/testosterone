@@ -1,8 +1,8 @@
-package com.cortex.juta;
+package com.cortex.testosterone;
 
 public class TestAutoTester {
     public static void main(String[] args) {
-        AutoTester autoTester = new AutoTester(Sample.class);
+        AutoTester autoTester = new AutoTester(Sample1.class);
         try {
             autoTester.test();
         } catch (Exception e) {
