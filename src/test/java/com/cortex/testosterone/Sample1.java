@@ -9,6 +9,7 @@ public class Sample1 {
     public int myMethod(@ValueFactory("com.cortex.testosterone.PositiveIntegerFactory") int x,
                         @ValueFactory("com.cortex.testosterone.PositiveIntegerFactory") int y,
                         @ValueFactory("com.cortex.testosterone.RandomStringFactory") String z) {
+        System.out.println("Executed myMethod(int, int, String");
         return 0;
     }
 

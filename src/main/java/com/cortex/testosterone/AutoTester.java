@@ -76,7 +76,7 @@ public class AutoTester {
                     if (annotation instanceof ValueFactory) {
                         ValueFactory myAnnotation = (ValueFactory) annotation;
                         Factory factory = createFactory(myAnnotation.value());
-                        f.addValueFactory(factory);
+                        f.addValueFactory(i+1, factory);  // i+1 since addValueFactory call is indexed from 1 as opposed to 0
                     }
                 }
             }

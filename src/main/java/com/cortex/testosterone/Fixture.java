@@ -1,21 +1,47 @@
 package com.cortex.testosterone;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
+/**
+ * Fixture represents all the data and values required to test a specific method in a given Class.
+ */
 public class Fixture {
+    private Class _class;
     private Method _target;
+
+    private boolean _ctorSpecified = false;
+    Class[] _types;
+    Object[] _values;
+
     private String _returnInvariant;
-    private List<Factory> _valueFactories = new ArrayList<>();
+    private Map<Integer, Factory> _factories = new HashMap<>();
 
     public Fixture(Method target) {
+        _class = target.getDeclaringClass();
         _target = target;
+    }
+
+    public void setConstructor(Class[] types, Object[] values) throws InvocationTargetException, IllegalAccessException, InstantiationException, NoSuchMethodException {
+        _ctorSpecified = true;
+        _types = types;
+        _values = values;
+        //Constructor constructor = getTargetClass().getDeclaredConstructor(types);
+        //_instance = constructor.newInstance(values);
+    }
+
+    public boolean requiresArgsConstructor() {
+        return _ctorSpecified;
     }
 
     public Method getTarget() {
         return _target;
+    }
+
+    public Class getTargetClass() {
+        return _class;
     }
 
     public String getReturnInvariant() {
@@ -27,11 +53,23 @@ public class Fixture {
     }
 
     public List<Factory> getValueFactories() {
-        return _valueFactories;
+        return new ArrayList<>(_factories.values());
     }
 
-    public void addValueFactory(Factory f) {
-        _valueFactories.add(f);
+    public void setValueFactories(List<Factory> factories) {
+        int i = 1;
+        for(Factory f : factories) {
+            _factories.put(i, f);
+        }
+    }
+
+    //TODO: provide a var args version as well where position is implied
+//    public void setValueFactories(Factory f...) {
+//
+//    }
+
+    public void addValueFactory(int position, Factory f) {
+        _factories.put(position, f);
     }
 
     public void execute() throws InvocationTargetException, IllegalAccessException, InstantiationException {
