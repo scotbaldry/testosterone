@@ -28,8 +28,6 @@ public class Fixture {
         _ctorSpecified = true;
         _types = types;
         _values = values;
-        //Constructor constructor = getTargetClass().getDeclaredConstructor(types);
-        //_instance = constructor.newInstance(values);
     }
 
     public boolean requiresArgsConstructor() {
@@ -58,7 +56,7 @@ public class Fixture {
 
     public void setValueFactories(List<Factory> factories) {
         int i = 1;
-        for(Factory f : factories) {
+        for (Factory f : factories) {
             _factories.put(i, f);
         }
     }
@@ -72,7 +70,7 @@ public class Fixture {
         _factories.put(position, f);
     }
 
-    public void execute() throws InvocationTargetException, IllegalAccessException, InstantiationException {
+    public void execute() throws InvocationTargetException, IllegalAccessException, InstantiationException, NoSuchMethodException {
         List<Factory> factories = getValueFactories();
         Object[] args = new Object[factories.size()];
 
@@ -86,19 +84,29 @@ public class Fixture {
             StringBuffer sb = new StringBuffer();
             sb.append("Invoking " + getTarget().getName() + " with args (");
 
-            int ptr = 0;
+            int param = 0;
             for (Object o : args) {
                 sb.append(o.toString());
-                if (ptr < args.length - 1) {
+
+                if (param < args.length - 1) {
                     sb.append(", ");
-                }
-                else {
+                } else {
                     sb.append(")");
                 }
+                param++;
             }
             System.out.println(sb.toString());
-            Object o = getTarget().getDeclaringClass().newInstance();
-            Object result = getTarget().invoke(o, args);
+
+            Object instance;
+            if (requiresArgsConstructor()) {
+                Constructor constructor = getTarget().getDeclaringClass().getDeclaredConstructor(_types);
+                instance = constructor.newInstance(_values);
+            }
+            else {
+                instance = getTarget().getDeclaringClass().newInstance();
+            }
+
+            Object result = getTarget().invoke(instance, args);
             System.out.println("Got result: " + result);
         }
     }

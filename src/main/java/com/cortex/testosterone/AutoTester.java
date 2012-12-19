@@ -15,7 +15,7 @@ public class AutoTester {
         _target = target;
     }
 
-    public void test() throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException {
+    public void test() throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
         _fixtureList = buildFixtures();
 
         for (Fixture f : _fixtureList) {
