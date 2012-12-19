@@ -16,6 +16,11 @@ public class RandomStringFactory implements Factory<String> {
     }
 
     @Override
+    public Class<String> getClassType() {
+        return String.class;
+    }
+
+    @Override
     public boolean isBoundedSet() {
         return true;
     }

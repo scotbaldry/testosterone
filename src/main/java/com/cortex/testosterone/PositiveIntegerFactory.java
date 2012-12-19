@@ -22,6 +22,11 @@ public class PositiveIntegerFactory implements Factory<Integer> {
     }
 
     @Override
+    public Class<Integer> getClassType() {
+        return Integer.class;
+    }
+
+    @Override
     public boolean isBoundedSet() {
         return true;
     }

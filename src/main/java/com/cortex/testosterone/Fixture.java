@@ -111,6 +111,10 @@ public class Fixture {
         }
     }
 
+    private void checkAssertions() {
+
+    }
+
     @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();

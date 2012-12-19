@@ -1,4 +1,4 @@
-package com.cortex.testosterone;
+package com.cortex.testosterone.annotations;
 
 import java.lang.annotation.*;
 

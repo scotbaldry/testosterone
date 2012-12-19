@@ -1,5 +1,9 @@
 package com.cortex.testosterone;
 
+import com.cortex.testosterone.annotations.ReturnInvariant;
+import com.cortex.testosterone.annotations.TestosteroneTest;
+import com.cortex.testosterone.annotations.ValueFactory;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -45,8 +49,7 @@ public class AutoTester {
     private boolean isAccessible(Method m) {
         if (Modifier.isPublic(m.getModifiers())) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -70,13 +73,11 @@ public class AutoTester {
 
             int i = 0;
             for (Annotation[] annotations : parameterAnnotations) {
-                Class parameterType = parameterTypes[i++];
-
                 for (Annotation annotation : annotations) {
                     if (annotation instanceof ValueFactory) {
                         ValueFactory myAnnotation = (ValueFactory) annotation;
                         Factory factory = createFactory(myAnnotation.value());
-                        f.addValueFactory(i+1, factory);  // i+1 since addValueFactory call is indexed from 1 as opposed to 0
+                        f.addValueFactory(i + 1, factory);  // i+1 since addValueFactory call is indexed from 1 as opposed to 0
                     }
                 }
             }
@@ -89,7 +90,7 @@ public class AutoTester {
 
     private Factory createFactory(String factoryName) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         Class c = Class.forName(factoryName);
-        Factory f = (Factory)c.newInstance();
+        Factory f = (Factory) c.newInstance();
         return f;
     }
 }
