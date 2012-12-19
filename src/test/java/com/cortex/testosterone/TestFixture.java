@@ -2,8 +2,6 @@ package com.cortex.testosterone;
 
 import junit.framework.TestCase;
 
-import java.lang.reflect.InvocationTargetException;
-
 public class TestFixture extends TestCase {
     public void testManualSetupNoArgsCtor() {
         try {
@@ -13,9 +11,21 @@ public class TestFixture extends TestCase {
             f.addValueFactory(3, new RandomStringFactory());
             f.setReturnInvariant(">0");
             f.execute();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
+            e.printStackTrace();
             fail();
+        }
+    }
+
+    public void testManualSetupInvalidMethodArgs() {
+        try {
+            Fixture f = new Fixture(Sample1.class.getMethod("myMethod", int.class, String.class));
+            f.addValueFactory(1, new PositiveIntegerFactory());
+            f.addValueFactory(2, new RandomStringFactory());
+            f.setReturnInvariant(">0");
+            f.execute();
+        } catch (Exception e) {
+            assertTrue(e instanceof NoSuchMethodException);
         }
     }
 
@@ -30,10 +40,25 @@ public class TestFixture extends TestCase {
             f.addValueFactory(3, new RandomStringFactory());
             f.setReturnInvariant(">0");
             f.execute();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             fail();
+        }
+    }
+
+    public void testManualSetupInvalidCtor() {
+        try {
+            Fixture f = new Fixture(Sample1.class.getMethod("myMethod", int.class, int.class, String.class));
+            Class[] classes = {String.class, int.class};
+            Object[] values = {"foo", 1};
+            f.setConstructor(classes, values);
+            f.addValueFactory(1, new PositiveIntegerFactory());
+            f.addValueFactory(2, new PositiveIntegerFactory());
+            f.addValueFactory(3, new RandomStringFactory());
+            f.setReturnInvariant(">0");
+            f.execute();
+        } catch (Exception e) {
+            assertTrue(e instanceof NoSuchMethodException);
         }
     }
 }

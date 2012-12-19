@@ -1,5 +1,7 @@
 package com.cortex.testosterone;
 
+import com.cortex.testosterone.annotations.ValueFactory;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
