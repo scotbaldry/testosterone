@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.cortex.juta</groupId>
-    <artifactId>juta</artifactId>
+    <groupId>com.cortex.testosterone</groupId>
+    <artifactId>testosterone</artifactId>
     <packaging>jar</packaging>
     <version>1.0</version>
-    <name>juta</name>
+    <name>testosterone</name>
 
     <pluginRepositories>
         <pluginRepository>
