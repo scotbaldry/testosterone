@@ -15,7 +15,8 @@
     </pluginRepositories>
 
     <build>
-        <plugins>
+<foo></foo>
+<bar>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.2</version>
